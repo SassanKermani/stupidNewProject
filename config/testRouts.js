@@ -26,6 +26,8 @@ router.post("/three", controllor.testFunctionThree);
 //test four
 router.post("/four", controllor.testFunctionFour);
 
+router.post("/five", controllor.testFunctionFive);
+
 /*=====  End of Routs  ======*/
 
 /*==============================
@@ -41,8 +43,10 @@ let endpints = JSON.stringify(
 			},
 			"post" : {
 				"/" : "list of all endpints",
+				"/one" : "test",
 				"/two" : "test two",
-				"/three" : "test three"
+				"/three" : "create user",
+				"/four" : "cheack if is valad user"
 			}
 		}
 	}

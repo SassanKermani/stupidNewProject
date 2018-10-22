@@ -86,12 +86,65 @@ let testFunctionFour = (req, res)=>{
 	}
 }
 
+/* body for testFunctionFour : creating a new user
+	"userObject" : {
+		name : <userName>,
+		password : <password>
+	},
+	"chatObject" : {
+		"title" : <title>,
+		"message" : <message>
+	}
+*/
+let testFunctionFive = (req, res)=>{
+	if( req.body.userObject.password != undefined && req.body.userObject.name != undefined && req.body.chatObject.title != undefined && req.body.chatObject.message != undefined ){
+		//making shrue there is not alread a thing
+		if( fs.existsSync(`./db/user/${req.body.userObject.name}.json`) == true ){
 
+			fs.readFile(`./db/user/${req.body.userObject.name}.json`, (err, data)=>{
+				if (err){
+					throw err;
+					console.log(err)
+					res.send(`you hit a bug thats neet : ${err}`);
+				}else{
+					//cheack user password
+					bcrypt.compare(req.body.userObject.password, JSON.parse(data).password, (err, bcryptRess)=>{
+						if(bcryptRess == true){
+
+							fs.writeFile(`./db/messages/${req.body.chatObject.title}.json`, JSON.stringify({title : req.body.chatObject.title, message : req.body.chatObject.message}), (err)=>{
+								if(err){
+									console.log(err);
+									return;
+								}
+								// console.log(`${req.body.name}.json has been created`);
+								res.send(JSON.stringify({title : req.body.chatObject.title, message : req.body.chatObject.message}));
+							});
+
+						}else{
+							res.send('password is dose not match')
+						}
+					})
+
+					// console.log(`typeof data :${ typeof data}`);
+					// console.log(`JSON.parse(data).name : ${ JSON.parse(data).name }`);
+					// res.send(data);
+				}
+			});
+
+		}else{
+			console.log(fs.existsSync(`./db/user/${req.body.userObject.name}.json`));
+			res.send(`${req.body.userObject.name} : username is not made`);
+		}
+	}else{
+		res.send('no password or name sent');
+	}
+}
 
 /*=====  End of Funcitons  ======*/
 /*----------  Export  ----------*/
 module.exports = {
 	testFunctionTwo,
 	testFunctionThree,
-	testFunctionFour
+	testFunctionFour,
+	testFunctionFive
 }

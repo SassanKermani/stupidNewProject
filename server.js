@@ -48,12 +48,11 @@ let endpints = JSON.stringify(
 		"status" : 'api is up',
 		"get" : {
 			"/" : "list of all endpints",
-			"/test" : {
-				"/" : "all test endpints",
-				}
+			"/test" : "all test endpints"
 		},
 		"post" : {
 			"/" : "list of all endpints",
+			"/test" : "all test endpints"
 		},
 	}
 );
