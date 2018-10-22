@@ -17,10 +17,14 @@ router.get("/one", (req, res)=>{
 })
 
 //test two
-router.get("/two", controllor.testFunction);
+router.get("/two", controllor.testFunctionTwo);
+router.post("/two", controllor.testFunctionTwo);
 
-//test three
-// router.get("/three", controllor.)
+// test three
+router.post("/three", controllor.testFunctionThree);
+
+//test four
+router.post("/four", controllor.testFunctionFour);
 
 /*=====  End of Routs  ======*/
 
@@ -37,6 +41,8 @@ let endpints = JSON.stringify(
 			},
 			"post" : {
 				"/" : "list of all endpints",
+				"/two" : "test two",
+				"/three" : "test three"
 			}
 		}
 	}
@@ -49,6 +55,7 @@ router.get("*", (req, res)=>{
 router.post("*", (req, res)=>{
 	res.send(endpints);
 })
+
 
 /*=====  End of Defult  ======*/
 

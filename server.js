@@ -7,6 +7,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const compression = require("compression");
 const helmet = require("helmet");
+const bodyParser = require('body-parser');
 
 //prot
 const port = 3000;
@@ -16,6 +17,8 @@ const app = express();
 
 //app.use
 app.use(morgan("common"));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
 app.use(helmet());
 app.use(cors({
 	origine : ["http://localhost:3000"],
