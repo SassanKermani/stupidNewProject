@@ -36,7 +36,7 @@ router.post("/five", controllor.testFunctionFive);
 
 let endpints = JSON.stringify(
 	{
-		status : 'api is up',
+		status : 'testRouts',
 		"test" : {
 			"get" : {
 			"/" : "list of all endpints",

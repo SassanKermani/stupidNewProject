@@ -46,7 +46,7 @@ let testFunctionThree = (req, res)=>{
 	}
 }
 
-/* body for testFunctionFour : creating a new user
+/* body for testFunctionFour : cheach user vladation
 	name : <userName>,
 	password : <password>
 */
@@ -86,7 +86,7 @@ let testFunctionFour = (req, res)=>{
 	}
 }
 
-/* body for testFunctionFour : creating a new user
+/* body for testFunctionFour : create message
 	"userObject" : {
 		name : <userName>,
 		password : <password>
@@ -138,6 +138,20 @@ let testFunctionFive = (req, res)=>{
 	}else{
 		res.send('no password or name sent');
 	}
+}
+
+/* body for testFunctionFour : create message
+	"userObject" : {
+		name : <userName>,
+		password : <password>
+	},
+	"chatObject" : {
+		"title" : <title>,
+		"message" : <message>
+	}
+*/
+let testFunctionSix = (req, res)=>{
+	
 }
 
 /*=====  End of Funcitons  ======*/

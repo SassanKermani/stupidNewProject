@@ -34,8 +34,10 @@ app.use(compression());
 ==========================================*/
 
 const testRouter = require("./config/testRouts.js");
+const apiV1Router = require("./config/apiV1Routs.js")
 
 app.use("/test", testRouter);
+app.use("/apiV1", apiV1Router);
 
 /*=====  End of hand off to config  ======*/
 
