@@ -13,6 +13,8 @@ const controllor = require('../controllers/apiV1Controllers.js');
 
 router.post("/createUser", controllor.createUser);
 
+// router.post('')
+
 /*=====  End of Routs  ======*/
 /*==============================
 =            Defult            =
@@ -25,6 +27,7 @@ let defult = {
 	},
 	"post" : {
 		"/" : "all routs",
+		"/createUser" : "creates new user not doe yes",
 
 	}
 }

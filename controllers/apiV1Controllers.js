@@ -10,8 +10,8 @@ const date = new Date();
 /*=================================
 =            Functions            =
 =================================*/
-
-/*	CREATE USER
+ 
+/*	CREATE USER 			IN THE FUTER I PLAN TO ROVET THIS RUT AND OR ONLY LET ME USE IT
 req.body {
 	user : {
 		name : <name>,
@@ -23,7 +23,28 @@ let createUser = (req,res)=>{
 	
 	if(req.body.user != undefined){
 		if(req.body.user.name != undefined && req.body.user.password != undefined){
-			res.send("user.name or user.password is defined");
+			if(fs.existsSync(`./db/user/${(req.body.user.name).toLowerCase()}.json`) != true){
+				// res.send(`${(req.body.user.name).toLowerCase()}`);
+
+				bcrypt.genSalt(13, function(err, salt){
+					bcrypt.hash(req.body.user.password, salt, (err, hash)=>{
+						fs.writeFile(`./db/user/${(req.body.user.name).toLowerCase()}.json`, JSON.stringify({
+							"name" : `${req.body.user.name}` , 
+							"password" : `${hash}`,
+							"dateJoined" : `${date.getFullYear()}:${date.getMonth()}:${date.getDate()}`
+						}), (err)=>{
+							if(err){
+								console.log(err);
+								return;
+							}
+							res.send(`Welcme ${req.body.user.name}`)
+						});
+					})
+				})
+
+			}else{
+				res.send("that user name is taken use anothr one");
+			}
 		}else{
 			res.send("user.name or user.password is undefined");
 		}
@@ -36,5 +57,5 @@ let createUser = (req,res)=>{
 /*----------  Exports  ----------*/
 module.exports = {
 	createUser,
-
+	
 }
